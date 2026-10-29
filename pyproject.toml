@@ -1,0 +1,34 @@
+[project]
+name = "agent-action-gate"
+version = "0.1.0"
+description = "In-process reference implementation of an agent action gate."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "agent-action-gate contributors" }]
+keywords = ["agent", "policy", "approval", "audit"]
+classifiers = [
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/eanfs/agent-action-gate"
+Repository = "https://github.com/eanfs/agent-action-gate"
+
+[project.scripts]
+aag = "agent_action_gate.cli:console_main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+agent_action_gate = ["data/*.yaml"]
