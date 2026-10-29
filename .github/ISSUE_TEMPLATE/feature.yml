@@ -1,0 +1,32 @@
+name: 功能建议
+description: 建议一个新能力或改动
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢建议。请不要在 issue 里粘贴密钥、令牌、客户数据或内部地址。
+  - type: textarea
+    id: problem
+    attributes:
+      label: 要解决的问题
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议的做法
+    validations:
+      required: true
+  - type: dropdown
+    id: usage
+    attributes:
+      label: 使用场景（选填）
+      options:
+        - 学习 / 了解
+        - 个人项目
+        - 公司内部试点
+        - 已在生产环境
+    validations:
+      required: false

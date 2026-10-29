@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: Apache-2.0
+# Reference policy for the refund demo. Amounts are CNY yuan.
+version: 1
+currency: CNY
+actions:
+  refund:
+    description: "Refund one order. amount_cny is yuan."
+    reversible: true
+    idempotency:
+      - order_id
+      - amount_cny
+    params:
+      amount_cny:
+        type: integer
+        minimum: 1
+        maximum: 100000
+      order_id:
+        type: string
+        pattern: "^ord_[A-Za-z0-9]+$"
+        max_length: 64
+      reason:
+        type: string
+        min_length: 1
+        max_length: 200
+    rules:
+      - id: refund.auto
+        when:
+          amount_cny_lte: 100
+        decision: allow
+        reason: "金额 {amount_cny} CNY 未超过自动放行上限 100 CNY"
+      - id: refund.approve
+        when:
+          amount_cny_gt: 100
+        decision: require_approval
+        reason: "金额 {amount_cny} CNY 超过自动放行上限 100 CNY，需要人工审批"
